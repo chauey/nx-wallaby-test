@@ -16,6 +16,9 @@
     ],
     "baseUrl": ".",
     "paths": {
+      "@nx-wallaby-test/my-lib": [
+        "libs/my-lib/src/index.ts"
+      ]
     }
   },
   "exclude": [

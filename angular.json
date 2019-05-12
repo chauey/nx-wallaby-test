@@ -2,13 +2,42 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "",
-  "projects": {},
+  "projects": {
+    "my-lib": {
+      "root": "libs/my-lib",
+      "sourceRoot": "libs/my-lib/src",
+      "projectType": "library",
+      "prefix": "nx-wallaby-test",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/my-lib/src/test.ts",
+            "tsConfig": "libs/my-lib/tsconfig.spec.json",
+            "karmaConfig": "libs/my-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/my-lib/tsconfig.lib.json",
+              "libs/my-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
   "cli": {
     "warnings": {
       "typescriptMismatch": false,
       "versionMismatch": false
     },
     "defaultCollection": "@nrwl/schematics"
-    
-  }
+  },
+  "defaultProject": "my-lib"
 }
